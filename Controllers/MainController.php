@@ -2,13 +2,30 @@
 
 namespace Controllers;
 
+use Models\UnitDAO;
+require_once __DIR__ . '/../Models/UnitDAO.php';
+
 class MainController
 {
-    private $engine;
+    private \League\Plates\Engine $engine;
 
     public function index(): void
     {
-        echo $this->engine->render('home', ['tftSetName' => 'Remix Rumble']);
+        // Instantiation du DAO
+        $unitDAO = new UnitDAO();
+
+        // Récupération des données
+        $units = $unitDAO->getAll();
+        $unitByIdExists = $unitDAO->getById(1); // Exemple avec un ID existant
+        $unitByIdNotExists = $unitDAO->getById(999); // Exemple avec un ID inexistant
+
+        // Passage des données à la vue
+        echo $this->engine->render('home', [
+            'tftSetName' => 'Remix Rumble',
+            'units' => $units,
+            'unitByIdExists' => $unitByIdExists,
+            'unitByIdNotExists' => $unitByIdNotExists
+        ]);
     }
 
     /**
