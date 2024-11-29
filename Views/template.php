@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="public/css/output.css" />
+    <link href="public/css/main.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $this->e($title) ?></title>
 </head>
@@ -16,7 +16,7 @@
         </nav>
     </header>
     <!-- #contenu -->
-    <main id="contenu">
+    <main id="contenu" class="template-content-container">
         <?= $this->section('content') ?>
     </main>
     <footer>
