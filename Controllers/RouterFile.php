@@ -16,34 +16,32 @@ class RouterFile
             'index' => [MainController::class, 'index'],
             'add-unit' => [MainController::class, 'displayAddUnit'],
             'list-units' => [UnitController::class, 'listUnits'],
-            'save-unit' => [UnitController::class, 'addUnit'], // Exemple pour POST
+            'save-unit' => [UnitController::class, 'addUnit'],
+            'delete-unit' => [UnitController::class, 'deleteUnit'],
         ];
     }
 
     public function routing($get, $post): void
     {
-        try {
-            // Déterminer l'action (par défaut : 'index')
-            $action = $get['action'] ?? 'index';
+        $action = $get['action'] ?? 'index';
+        $method = !empty($post) ? 'POST' : 'GET';
 
-            if (!isset($this->routes[$action])) {
-                throw new \Exception("Action '$action' non trouvée.");
-            }
-
-            // Récupération du contrôleur et de la méthode
+        if (isset($this->routes[$action])) {
             [$controllerClass, $method] = $this->routes[$action];
             $controller = new $controllerClass();
 
-            // Vérifier la méthode HTTP et appeler la bonne méthode du contrôleur
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $controller->$method($post);
+                if ($action === 'delete-unit' && isset($post['id'])) {
+                    $controller->$method($post['id']);
+                } else {
+                    $controller->$method($post);
+                }
             } else {
                 $controller->$method($get);
             }
-        } catch (\Exception $e) {
-            // En cas d'erreur, afficher une page d'erreur
-            $errorController = new MainController(); // Utiliser MainController pour afficher les erreurs
-            $errorController->renderError($e->getMessage());
+        } else {
+            throw new \Exception("Action '$action' non trouvée.");
         }
     }
+
 }

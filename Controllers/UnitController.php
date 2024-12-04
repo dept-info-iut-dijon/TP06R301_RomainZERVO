@@ -30,7 +30,6 @@ class UnitController
 
         try {
             $unitDAO->insert(
-                $data['id'],
                 $data['name'],
                 $data['cost'],
                 $data['origin'],
@@ -54,12 +53,12 @@ class UnitController
         $unitDAO = new UnitDAO();
 
         try {
+            // Supprimer l'unité
             $unitDAO->delete($id);
 
-            echo $this->engines->render('delete-unit-success', [
-                'tftSetName' => 'Delete Unit',
-                'message' => 'Unit deleted successfully!',
-            ]);
+            // Rediriger vers la page précédente (ou vers la liste des unités)
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+            exit(); // Assure-toi que l'exécution du script s'arrête ici
         } catch (\Exception $e) {
             echo $this->engines->render('error', [
                 'tftSetName' => 'Error',

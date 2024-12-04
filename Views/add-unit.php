@@ -1,3 +1,6 @@
+<?= include_once "Includes\Navbar.php"?>
+
+
 <h1><?= htmlspecialchars($tftSetName) ?></h1>
 <form method="POST" action="?action=save-unit">
     <label for="id">ID:</label>
