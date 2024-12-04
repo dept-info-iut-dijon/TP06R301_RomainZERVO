@@ -1,0 +1,74 @@
+/* Couleurs du thème sombre inspirées de League of Legends */
+:root {
+    --dark-bg: #1A1A1A;  /* Fond sombre */
+    --gold: #FFD700;     /* Or */
+    --white: #FFFFFF;    /* Blanc */
+    --light-grey: #555;  /* Gris clair pour les hover */
+}
+
+/* Style de la navbar */
+.navbar {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 2rem;
+}
+
+.navbar-container {
+    margin: 0 auto; /* Centrer la navbar */
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img {
+    height: 6rem;
+    width: auto;
+    filter: drop-shadow(0px 3px 6px var(--gold));
+}
+
+.navbar-list {
+    display: flex;
+    gap: 2rem; /* Espacement entre les éléments */
+    list-style: none; /* Supprimer les puces */
+    margin: 0;
+}
+
+.navbar-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-link {
+    color: var(--white); /* Texte blanc */
+    text-decoration: none; /* Enlever les sous-lignes */
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.navbar-link:hover {
+    color: var(--gold); /* Changer la couleur en doré au survol */
+    text-decoration: underline; /* Ajouter une soulignure */
+    transform: scale(1.1); /* Légère animation pour l'effet de survol */
+}
+
+/* Responsiveness (adaptation pour mobile) */
+@media (max-width: 768px) {
+    .navbar-list {
+        flex-direction: column; /* Empiler les éléments en colonne */
+        gap: 1rem;
+    }
+
+    .navbar-content {
+        flex-direction: column;
+        align-items: flex-start; /* Alignement à gauche */
+    }
+
+    .logo-img {
+        height: 40px; /* Réduire la taille du logo pour les écrans plus petits */
+    }
+}

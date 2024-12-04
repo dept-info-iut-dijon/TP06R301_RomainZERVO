@@ -10,22 +10,15 @@
 </head>
 
 <body>
-    <header>
-    </header>
-    <!-- #contenu -->
-    <main id="contenu" class="template-content-container">
-        <?= $this->section('content') ?>
-    </main>
-    <footer>
+<header>
+    <?= include_once("Includes\Navbar.php") ?>
+</header>
+<!-- #contenu -->
+<main id="contenu" class="template-content-container">
+    <?= $this->section('content') ?> <!-- Modifier ici pour utiliser 'mainContent' au lieu de 'content' -->
+</main>
+<footer>
 
-    </footer>
+</footer>
 </body>
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-</style>
 </html>

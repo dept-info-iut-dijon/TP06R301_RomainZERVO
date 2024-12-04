@@ -36,6 +36,27 @@ class MainController
         ]);
     }
 
+    public function displaySearch(): void
+    {
+        echo $this->engines->render('search', [
+            'tftSetName' => 'Search',
+        ]);
+    }
+
+    public function displayUnitOrigin(): void
+    {
+        echo $this->engines->render('add-unit-origin', [
+            'tftSetName' => 'Add Unit Origin',
+        ]);
+    }
+
+    public function displayAddUnitSuccess(): void
+    {
+        echo $this->engines->render('add-unit-success', [
+            'tftSetName' => 'Add Unit Success',
+        ]);
+    }
+
     public function renderError(string $message): void
     {
         echo $this->engines->render('error', [

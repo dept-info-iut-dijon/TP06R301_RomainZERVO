@@ -15,6 +15,9 @@ class RouterFile
         $this->routes = [
             'index' => [MainController::class, 'index'],
             'add-unit' => [MainController::class, 'displayAddUnit'],
+            'search' => [MainController::class, 'displaySearch'],
+            'add-unit-origin' => [MainController::class, 'displayUnitOrigin'],
+            'add-unit-success' => [UnitController::class, 'addUnit'],
             'list-units' => [UnitController::class, 'listUnits'],
             'save-unit' => [UnitController::class, 'addUnit'],
             'delete-unit' => [UnitController::class, 'deleteUnit'],
@@ -32,7 +35,7 @@ class RouterFile
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($action === 'delete-unit' && isset($post['id'])) {
-                    $controller->$method($post['id']);
+                    $controller->$method($post['id']);  // Récupérer l'ID depuis $_POST
                 } else {
                     $controller->$method($post);
                 }
@@ -43,5 +46,7 @@ class RouterFile
             throw new \Exception("Action '$action' non trouvée.");
         }
     }
+
+
 
 }

@@ -1,7 +1,10 @@
 <?php
 
 include_once "Includes\Navbar.php";
+$this->layout('template')
 
 ?>
 
-L'insertion s'est déroulée avec succcès !
+<section class="success-section">
+
+</section>
