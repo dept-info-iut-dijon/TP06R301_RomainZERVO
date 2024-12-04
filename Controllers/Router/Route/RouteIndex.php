@@ -7,19 +7,11 @@ use Controllers\Router\Route;
 
 class RouteIndex extends Route
 {
-    protected $controller;
+    protected MainController $controller;
 
     public function __construct(MainController $controller)
     {
         $this->controller = $controller;
-    }
-
-    public function action($params = [], $method = 'GET')
-    {
-        if ($method === 'POST') {
-            return $this->post($params);
-        }
-        return $this->get($params);
     }
 
     public function get($params = [])
@@ -30,6 +22,5 @@ class RouteIndex extends Route
 
     public function post($params = [])
     {
-        // Logique pour POST, si applicable
     }
 }

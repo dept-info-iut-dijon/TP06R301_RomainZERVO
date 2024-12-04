@@ -9,4 +9,3 @@ include_once __DIR__ . '/Includes/Navbar.php';
 ?>
 
 <h1 class="main-title">TFT - Set <?= $this->e($tftSetName) ?></h1>
-

@@ -23,7 +23,13 @@ $loader->register();
 $loader->addNamespace('\Helpers', '/Helpers');
 $loader->addNamespace('\League\Plates', '/Vendor/Plates/src');
 $loader->addNamespace('\Controllers', '/Controllers');
+$loader->addNamespace('\Models', '/Models');
+$loader->addNamespace('\Config', '/Config');
 
-$Controller = new \Controllers\MainController();
-$Controller->index();
+$router = new \Controllers\Router\Router();
+try {
+    $router->routing($_GET, $_POST);
+} catch (Exception $e) {
+    throw new Exception("Erreur de routage : ", $e->getMessage());
+}
 #endregion

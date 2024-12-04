@@ -15,9 +15,9 @@ class UnitDAO extends BasePDODAO
     /**
      * Récupère toutes les unités.
      *
-     * @return Unit[] Liste des unités.
+     * @return array|null Liste des unités.
      */
-    public function getAll(): array
+    public function getAll(): ?array
     {
         $sql = "SELECT * FROM unit";
         $stmt = $this->execRequest($sql);
@@ -56,12 +56,26 @@ class UnitDAO extends BasePDODAO
      */
     private function createUnitFromRow(array $row): Unit
     {
-        return new Unit(
-            (int)$row['id'],
-            $row['name'],
-            (float)$row['cost'],
-            $row['origin'],
-            $row['url_img']
-        );
+        $unit = new Unit();
+        $unit->setId(uniqid());
+        $unit->setName($row['name']);
+        $unit->setCost($row['cost']);
+        $unit->setOrigin($row['origin']);
+        $unit->setUrlImg($row['url_img']);
+        return $unit;
     }
+
+
+    public function addUnit(Unit $unit) : void {
+        $unit->setId(uniqid());
+
+        $sql = 'INSERT INTO UNIT (id, name, cost, url_img) VALUES (:id, :name, :cost, :url_img)';
+        $this->execRequest($sql, [
+            'id' => $unit->getId(),
+            'name' => $unit->getName(),
+            'cost' => $unit->getCost(),
+            'url_img' => $unit->getUrlImg()
+        ]);
+    }
+
 }

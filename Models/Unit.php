@@ -6,19 +6,14 @@ namespace Entities;
 
 class Unit
 {
-    private ?int $id;
+    private ?string $id;
     private string $name;
     private float $cost;
     private string $origin;
     private string $url_img;
 
-    public function __construct(?int $id, string $name, float $cost, string $origin, string $url_img)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->cost = $cost;
-        $this->origin = $origin;
-        $this->url_img = $url_img;
     }
 
     // Getters
@@ -29,6 +24,7 @@ class Unit
     public function getUrlImg(): string { return $this->url_img; }
 
     // Setters
+    public function setId(string $id): void { $this->id = $id; }
     public function setName(string $name): void { $this->name = $name; }
     public function setCost(float $cost): void { $this->cost = $cost; }
     public function setOrigin(string $origin): void { $this->origin = $origin; }
