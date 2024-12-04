@@ -3,25 +3,22 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="public/css/main.css" />
+    <link href="public/css/main.css" rel="stylesheet">
+    <link href="public/css/navbar.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $this->e($title) ?></title>
 </head>
 
 <body>
-    <header>
-        <!-- Menu -->
-        <nav>
+<header>
+    <?= include_once("Includes\Navbar.php") ?>
+</header>
+<!-- #contenu -->
+<main id="contenu" class="template-content-container">
+    <?= $this->section('content') ?> <!-- Modifier ici pour utiliser 'mainContent' au lieu de 'content' -->
+</main>
+<footer>
 
-        </nav>
-    </header>
-    <!-- #contenu -->
-    <main id="contenu">
-        <?= $this->section('content') ?>
-    </main>
-    <footer>
-
-    </footer>
+</footer>
 </body>
-
 </html>

@@ -1,0 +1,178 @@
+:root {
+    --dark-bg: #1A1A1A;  /* Fond sombre */
+    --dark-bg2: #333333; /* Fond plus clair */
+    --gold: #FFD700;     /* Or */
+    --white: #FFFFFF;    /* Blanc */
+    --light-grey: #555;  /* Gris clair pour les hover */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', "sans-serif";  /* Police médiévale */
+}
+
+body {
+    background-color: var(--dark-bg2);
+    color: var(--white);
+    font-size: 16px;
+}
+
+
+h1 {
+    color: var(--gold);
+    font-size: 2em;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+/* Conteneur parent des cartes */
+.card-container {
+    display: flex; /* Utilisation de Flexbox */
+    flex-wrap: wrap; /* Permet aux cartes de se répartir sur plusieurs lignes si nécessaire */
+    justify-content: space-evenly; /* Aligne les cartes de manière égale dans l'espace */
+}
+
+/* Cartes d'unités */
+.card {
+    position: relative;
+    background-color: var(--dark-bg); /* Fond sombre */
+    border: 2px solid var(--gold); /* Bordure dorée */
+    border-radius: 15px; /* Coins arrondis */
+    margin: 20px;
+    width: 300px; /* Taille fixe de la carte */
+    height: 400px; /* Hauteur fixe de la carte */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Ombre plus marquée */
+    overflow: hidden;
+    display: flex; /* Utilisation de Flexbox dans la carte */
+    flex-direction: column; /* Dispose les éléments verticalement */
+}
+
+/* Image de fond dans la carte */
+.card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.2; /* Opacité subtile */
+    z-index: 1;
+}
+
+/* Contenu de la carte (au-dessus de l'image de fond) */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fond noir légèrement transparent */
+    padding: 15px;
+    z-index: 2;
+    border-top: 2px solid var(--gold); /* Bordure dorée en haut du contenu */
+    flex-grow: 0; /* Ne prend pas d'espace verticalement */
+    justify-content: flex-end; /* Aligne le contenu en bas */
+    margin-top: auto; /* Pousse le contenu vers le bas */
+}
+
+
+
+/* Titre dans la carte */
+.card-body h2 {
+    font-size: 24px;
+    color: var(--gold); /* Titre en doré */
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); /* Ombre pour un effet médiéval */
+}
+
+/* Description dans la carte */
+.card-body p {
+    font-size: 16px;
+    color: var(--white); /* Texte de description en blanc */
+    margin: 5px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Légère ombre pour le texte */
+}
+
+/* Formulaire pour la suppression dans la carte */
+.card-header {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+}
+
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    color: #ff6666; /* Rouge clair pour la croix */
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+    color: #ff0000; /* Rouge intense au survol */
+}
+
+/* Ajustement de l'affichage des cartes sur des écrans plus petits */
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 40px); /* Deux cartes par ligne sur les écrans moyens */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: calc(100% - 40px); /* Une carte par ligne sur les petits écrans */
+    }
+}
+
+
+
+/* Formulaires */
+.form-group {
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--gold);
+    padding: 10px ;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--gold);
+    border-radius: 5px;
+    background-color: var(--dark-bg);
+    color: var(--white);
+    font-size: 1.1em;
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 10px var(--gold);
+}
+
+.submit-btn {
+    background-color: var(--gold);
+    color: var(--dark-bg);
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #cc9a00; /* Ombre plus foncée */
+}
