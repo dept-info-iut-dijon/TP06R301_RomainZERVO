@@ -4,6 +4,8 @@
  * Made for import file
  */
 require_once("Helpers/Psr4AutoloaderClass.php");
+
+require_once("Controllers\RouterFile.php");
 #endregion
 
 #region use
@@ -26,10 +28,10 @@ $loader->addNamespace('\Controllers', '/Controllers');
 $loader->addNamespace('\Models', '/Models');
 $loader->addNamespace('\Config', '/Config');
 
-$router = new \Controllers\Router\Router();
+$router = new \Controllers\Router\RouterFile();
 try {
     $router->routing($_GET, $_POST);
 } catch (Exception $e) {
-    throw new Exception("Erreur de routage : ", $e->getMessage());
+    throw new Exception("Erreur de routage : " . $e->getMessage());
 }
 #endregion

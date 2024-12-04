@@ -1,11 +1,19 @@
-<?php
-require_once __DIR__ . '/../Models/UnitDAO.php';
+<h1><?= htmlspecialchars($tftSetName) ?></h1>
+<form method="POST" action="?action=save-unit">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" required>
 
-use Models\UnitDAO;
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
 
-$this->layout('template', ['title' => 'TP TFT - Add Unit']);
+    <label for="cost">Cost:</label>
+    <input type="number" id="cost" name="cost" required>
 
-include_once __DIR__ . '/Includes/Navbar.php';
-?>
+    <label for="origin">Origin:</label>
+    <input type="text" id="origin" name="origin" required>
 
-<h1 class="main-title">TFT - Set <?= $this->e($tftSetName) ?></h1>
+    <label for="url_img">Image URL:</label>
+    <input type="text" id="url_img" name="url_img" required>
+
+    <button type="submit">Add Unit</button>
+</form>

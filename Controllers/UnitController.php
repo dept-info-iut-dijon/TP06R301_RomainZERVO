@@ -2,57 +2,69 @@
 
 namespace Controllers;
 
-use Entities\OriginDAO;
-use Exception;
+use Models\UnitDAO;
 
 class UnitController
 {
-    private $templates;
+    private \League\Plates\Engine $engines;
 
     public function __construct()
     {
-        $this->templates = new \League\Plates\Engine('Views');
+        $this->engines = new \League\Plates\Engine(__DIR__ . "/../Views");
     }
 
-    public function displayAddUnit(?string $message = null): void {
-        $originDAO = new \Models\OriginDAO();
-        $origins = $originDAO->getAll();
-
-        echo $this->templates->render('upsert-unit', [
-            'origins' => $origins,
-            'message' => $message
-        ]);
-    }
-
-    public function displayAddOrigin(?string $message = null):void {
-        echo $this->templates->render('add-origin', [
-            'message' => $message
-        ]);
-    }
-
-    public function displayEditUnit(string $id, ?string $message = null): void
+    public function listUnits(): void
     {
-        $unitDAO = new \Models\UnitDAO();
-        $unit = $unitDAO->getByID($id);
+        $unitDAO = new UnitDAO();
+        $units = $unitDAO->getAll();
 
-        $originDAO = new \Models\OriginDAO();
-        $origins = $originDAO->getAll();
-
-        echo $this->templates->render('upsert-unit', [
-            'unit' => $unit,
-            'origins' => $origins,
-            'message' => $message
+        echo $this->engines->render('list-units', [
+            'tftSetName' => 'Unit List',
+            'units' => $units,
         ]);
     }
 
-    /**
-     * @throws Exception If the unit is not found
-     */
-    public function deleteUnits(string $id): void
+    public function addUnit($data): void
     {
-        $unitDAO = new \Models\UnitDAO();
-        if ($unitDAO->deleteUnit($id) === 0) {
-            throw new Exception("Unit not found");
+        $unitDAO = new UnitDAO();
+
+        try {
+            $unitDAO->insert(
+                $data['id'],
+                $data['name'],
+                $data['cost'],
+                $data['origin'],
+                $data['url_img']
+            );
+
+            echo $this->engines->render('add-unit-success', [
+                'tftSetName' => 'Add Unit',
+                'message' => 'Unit added successfully!',
+            ]);
+        } catch (\Exception $e) {
+            echo $this->engines->render('error', [
+                'tftSetName' => 'Error',
+                'message' => 'Failed to add unit: ' . $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function deleteUnit(string $id): void
+    {
+        $unitDAO = new UnitDAO();
+
+        try {
+            $unitDAO->delete($id);
+
+            echo $this->engines->render('delete-unit-success', [
+                'tftSetName' => 'Delete Unit',
+                'message' => 'Unit deleted successfully!',
+            ]);
+        } catch (\Exception $e) {
+            echo $this->engines->render('error', [
+                'tftSetName' => 'Error',
+                'message' => 'Failed to delete unit: ' . $e->getMessage(),
+            ]);
         }
     }
 }

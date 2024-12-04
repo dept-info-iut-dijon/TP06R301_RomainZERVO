@@ -1,26 +1,19 @@
 <?php
 
-namespace Controllers\Router\Route;
-
 use Controllers\MainController;
-use Controllers\Router\Route;
+use Controllers\Route;
 
-class RouteIndex extends Route
-{
-    protected MainController $controller;
+class RouteIndex extends Route {
+    private MainController $controller;
 
-    public function __construct(MainController $controller)
-    {
+    public function __construct($controller) {
         $this->controller = $controller;
     }
 
-    public function get($params = [])
-    {
-        // Appel du contrôleur et rendu de la vue pour GET
-        $this->controller->index();
+    public function get($params = []) {
+        return $this->controller->index();
     }
 
-    public function post($params = [])
-    {
+    public function post($params = []) {
     }
 }

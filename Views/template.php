@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="fr">
 
@@ -11,9 +13,8 @@
 <body>
     <header>
         <!-- Menu -->
-        <nav>
+            <?= include_once "Includes\Navbar.php" ?>
 
-        </nav>
     </header>
     <!-- #contenu -->
     <main id="contenu" class="template-content-container">

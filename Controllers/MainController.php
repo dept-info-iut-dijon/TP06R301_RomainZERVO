@@ -4,7 +4,6 @@ namespace Controllers;
 
 use League\Plates\Template\Template;
 use Models\UnitDAO;
-require_once __DIR__ . '/../Models/UnitDAO.php';
 
 class MainController
 {
@@ -36,4 +35,12 @@ class MainController
             'tftSetName' => 'Add Unit',
         ]);
     }
+
+    public function renderError(string $message): void
+    {
+        echo $this->engines->render('error', [
+            'message' => $message,
+        ]);
+    }
+
 }
